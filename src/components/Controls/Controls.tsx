@@ -1,8 +1,6 @@
 import * as React from 'react';
 import { useState } from 'react';
-
-import { Slider, IconButton, Popover, Stack, Box } from '@mui/material';
-
+import { Slider, IconButton, Popover, Stack, Box, styled } from '@mui/material';
 import RepeatIcon from '@mui/icons-material/Repeat';
 import ShuffleIcon from '@mui/icons-material/Shuffle';
 import SkipPreviousOutlinedIcon from '@mui/icons-material/SkipPreviousOutlined';
@@ -12,6 +10,18 @@ import QueueMusicOutlinedIcon from '@mui/icons-material/QueueMusicOutlined';
 import VolumeUpOutlinedIcon from '@mui/icons-material/VolumeUpOutlined';
 import VolumeOffOutlinedIcon from '@mui/icons-material/VolumeOffOutlined';
 import VolumeDownOutlinedIcon from '@mui/icons-material/VolumeDownOutlined';
+import { colors } from '../../styles/variables';
+
+const ControlButton = styled(IconButton)(({ theme }) => ({
+  color:
+    theme.palette.mode === 'light'
+      ? colors.light.colorControlBtn
+      : colors.dark.colorControlBtn,
+  '&:hover, &.Mui-focusVisible': {
+    backgroundColor: colors.bgColorControlBtn,
+    color: colors.colorControlBtnHover,
+  },
+}));
 
 export const Controls = () => {
   const [volume, setVolume] = useState(100);
@@ -22,10 +32,6 @@ export const Controls = () => {
 
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
-
-  // const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-  //   setAnchorEl(event.currentTarget);
-  // };
 
   const handleClose = () => {
     setAnchorEl(null);
@@ -43,29 +49,27 @@ export const Controls = () => {
 
   return (
     <Box>
-      <Box>
-        <IconButton color="secondary" component="label">
+      <Stack direction="row" justifyContent="space-between">
+        <ControlButton>
           <RepeatIcon />
-        </IconButton>
-        <IconButton color="secondary" component="label">
+        </ControlButton>
+        <ControlButton>
           <ShuffleIcon />
-        </IconButton>
-        <IconButton color="secondary" component="label">
+        </ControlButton>
+        <ControlButton>
           <SkipPreviousOutlinedIcon />
-        </IconButton>
-        <IconButton  color="secondary" component="label">
+        </ControlButton>
+        <ControlButton>
           <PlayArrowOutlinedIcon />
-        </IconButton>
-        <IconButton color="secondary" component="label">
+        </ControlButton>
+        <ControlButton>
           <SkipNextOutlinedIcon />
-        </IconButton>
-        <IconButton color="secondary" component="label">
+        </ControlButton>
+        <ControlButton>
           <QueueMusicOutlinedIcon />
-        </IconButton>
-        <IconButton color="secondary" component="label" >
-          {showVolumeIcon()}
-        </IconButton>
-      </Box>
+        </ControlButton>
+        <ControlButton>{showVolumeIcon()}</ControlButton>
+      </Stack>
       <Popover
         id={id}
         open={open}
@@ -78,8 +82,7 @@ export const Controls = () => {
         transformOrigin={{
           vertical: 'bottom',
           horizontal: 'center',
-        }}
-      >
+        }}>
         <Box sx={{ width: 200 }}>
           <Stack spacing={2} direction="row" sx={{ mb: 1 }} alignItems="center">
             <VolumeDownOutlinedIcon />
