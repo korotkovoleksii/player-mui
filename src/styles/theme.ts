@@ -6,37 +6,37 @@ export const getDesignTokens = (mode: PaletteMode) => ({
     mode,
     ...(mode === 'light'
       ? {
-        // palette values for light mode
-        background: {
-          default: colors.light.background,
-        },
-        text: {
-          primary: colors.light.text,
-          secondary: colors.light.subtitles,
-        },
-        primary: {
-          main: '#1E1F27'
-        },
-        secondary: {
-          main: "#1E1F27"
-        },
-      }
+          // palette values for light mode
+          background: {
+            default: colors.light.background,
+          },
+          text: {
+            primary: colors.light.text,
+            secondary: colors.light.subtitles,
+          },
+          primary: {
+            main: '#1E1F27',
+          },
+          secondary: {
+            main: '#1E1F27',
+          },
+        }
       : {
-        // palette values for dark mode
-        primary: {
-          main: '#FFFFFF'
-        },
-        secondary: {
-          main: '#FFFFFF'
-        },
-        background: {
-          default: colors.dark.background,
-        },
-        text: {
-          primary: colors.light.text,
-          secondary: colors.light.subtitles,
-        },
-      }),
+          // palette values for dark mode
+          primary: {
+            main: '#FFFFFF',
+          },
+          secondary: {
+            main: '#FFFFFF',
+          },
+          background: {
+            default: colors.dark.background,
+          },
+          text: {
+            primary: colors.light.text,
+            secondary: colors.light.subtitles,
+          },
+        }),
   },
   typography: {
     fontFamily: 'Poppins',
@@ -51,12 +51,8 @@ export const getDesignTokens = (mode: PaletteMode) => ({
       letterSpacing: 0.15,
     },
     body1: {
-      fontSize: 12,
+      fontSize: 14,
       fontWeight: 400,
-    }
-
+    },
   },
-
 });
-
-

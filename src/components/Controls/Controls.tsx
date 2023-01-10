@@ -13,13 +13,21 @@ import VolumeDownOutlinedIcon from '@mui/icons-material/VolumeDownOutlined';
 import { colors } from '../../styles/variables';
 
 const ControlButton = styled(IconButton)(({ theme }) => ({
+  height: '48px',
+  width: '48px',
+
   color:
     theme.palette.mode === 'light'
       ? colors.light.colorControlBtn
       : colors.dark.colorControlBtn,
   '&:hover, &.Mui-focusVisible': {
     backgroundColor: colors.bgColorControlBtn,
+
     color: colors.colorControlBtnHover,
+  },
+  '& .MuiSvgIcon-root': {
+    height: '24px',
+    width: '24px',
   },
 }));
 

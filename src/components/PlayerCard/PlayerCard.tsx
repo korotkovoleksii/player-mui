@@ -32,99 +32,114 @@ const PlayerCard = () => {
   };
 
   return (
-    <Container
-      maxWidth="sm"
-      sx={{
-        '&.MuiContainer-root': {
-          pl: '96px',
-          pr: '96px',
-        },
-      }}>
+    <Container maxWidth="sm">
       <Box
         sx={{
-          mt: 7,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
         }}>
-        <Stack alignItems={'center'}>
-          <CustomSwitch
-            sx={{
-              mb: 5,
-            }}
-            onClick={aa.toggleColorMode}
-          />
-          <AlbumImage src="https://via.ritzau.dk/data/images/00180/311cc18f-3372-4bbd-b50f-d4a253bfb755-w_960.jpg" />
+        <Box
+          sx={{
+            mt: 7,
+            width: '402px',
+          }}>
+          <Stack alignItems={'center'}>
+            <CustomSwitch
+              sx={{
+                mb: 5,
+              }}
+              onClick={aa.toggleColorMode}
+            />
+            <AlbumImage src="https://via.ritzau.dk/data/images/00180/311cc18f-3372-4bbd-b50f-d4a253bfb755-w_960.jpg" />
+            <Stack
+              direction="row"
+              justifyContent="center"
+              alignItems="center"
+              spacing={5}
+              sx={{
+                mt: 4,
+              }}>
+              <IconButton
+                color="secondary"
+                component="label"
+                onClick={() => {
+                  setLiked(isLiked === false ? null : false);
+                }}>
+                {isLiked === false ? (
+                  <ThumbDownIcon />
+                ) : (
+                  <ThumbDownOffAltIcon />
+                )}
+              </IconButton>
+              <Typography variant="h6" component="h5" color="secondary">
+                Maniac
+              </Typography>
+              <IconButton
+                color="secondary"
+                component="label"
+                onClick={() => {
+                  setLiked(isLiked ? null : true);
+                }}>
+                {isLiked === true ? <ThumbUpIcon /> : <ThumbUpOffAltIcon />}
+              </IconButton>
+            </Stack>
+            <Typography
+              variant="subtitle1"
+              component="span"
+              sx={{
+                mb: '23px',
+                color:
+                  theme.palette.mode === 'light'
+                    ? colors.light.colorOfAuthor
+                    : colors.dark.colorOfAuthor,
+              }}>
+              Michael Sambello
+            </Typography>
+            <Slider
+              aria-label="Custom marks"
+              defaultValue={20}
+              value={position}
+              min={0}
+              step={1}
+              max={duration}
+              onChange={(_, value: number | number[]) => {
+                if (!Array.isArray(value)) {
+                  setPosition(value);
+                }
+              }}
+              sx={{
+                color:
+                  theme.palette.mode === 'dark'
+                    ? colors.dark.slider
+                    : colors.light.slider,
+              }}
+            />
+          </Stack>
+
           <Stack
             direction="row"
-            justifyContent="center"
             alignItems="center"
-            spacing={4}
+            justifyContent="space-between"
             sx={{
-              mt: 5,
+              mt: '5px',
             }}>
-            <IconButton
-              color="secondary"
-              component="label"
-              onClick={() => {
-                setLiked(isLiked === false ? null : false);
-              }}>
-              {isLiked === false ? <ThumbDownIcon /> : <ThumbDownOffAltIcon />}
-            </IconButton>
-            <Typography variant="h6" component="h5" color="secondary">
-              Maniac
+            <Typography variant="body2" color="secondary">
+              {formatDuration(position)}
             </Typography>
-            <IconButton
-              color="secondary"
-              component="label"
-              onClick={() => {
-                setLiked(isLiked ? null : true);
-              }}>
-              {isLiked === true ? <ThumbUpIcon /> : <ThumbUpOffAltIcon />}
-            </IconButton>
+            <Typography variant="body2" color="secondary">
+              {formatDuration(duration)}
+            </Typography>
           </Stack>
-          <Typography
-            variant="subtitle1"
-            component="span"
-            sx={{
-              mb: 3,
-              color:
-                theme.palette.mode === 'light'
-                  ? colors.light.colorOfAuthor
-                  : colors.dark.colorOfAuthor,
-            }}>
-            Michael Sambello
-          </Typography>
-          <Slider
-            aria-label="Custom marks"
-            defaultValue={20}
-            value={position}
-            min={0}
-            step={1}
-            max={duration}
-            onChange={(_, value: number | number[]) => {
-              if (!Array.isArray(value)) {
-                setPosition(value);
-              }
-            }}
-            sx={{
-              color:
-                theme.palette.mode === 'dark'
-                  ? colors.dark.slider
-                  : colors.light.slider,
-            }}
-          />
-        </Stack>
-
-        <Stack
-          direction="row"
-          alignItems="center"
-          justifyContent="space-between"
+        </Box>
+        <Box
           sx={{
-            mt: 1.5,
-            mb: 5,
+            mt: '25px',
+            width: '430px',
           }}>
-          <Typography color="secondary">{formatDuration(position)}</Typography>
-          <Typography color="secondary">{formatDuration(duration)}</Typography>
-        </Stack>
-        <Controls />
+          <Controls />
+        </Box>
       </Box>
     </Container>
   );

@@ -9,7 +9,7 @@ export const colors = {
     track: "#D1D6F6",
     colorOfAuthor: '#1E1F2780',
     slider: '#6371C9',
-    colorControlBtn: "1E1F27",
+    colorControlBtn: "#1E1F27",
 
   },
   dark: {

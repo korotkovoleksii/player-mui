@@ -15,5 +15,6 @@
         "parser": "typescript"
       }
     }
-  ]
+  ],
+  "eslintIntegration": true
 }
